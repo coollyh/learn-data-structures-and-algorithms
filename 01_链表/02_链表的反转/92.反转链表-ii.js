@@ -62,8 +62,28 @@
  * @param {number} right
  * @return {ListNode}
  */
-var reverseBetween = function(head, left, right) {
-
+var reverseBetween = function (head, left, right) {
+  if(!head)return null
+  let ret = new ListNode(-1,head),pre = ret,count= right-left+1
+  while(--left){
+    pre = pre.next
+  }
+  pre.next = reverse(pre.next,count)
+  return ret.next
 };
+
+var reverse = function(head,n){
+  let pre = null,cur = head
+  while(n--){
+    let next = cur.next
+    cur.next = pre;
+    pre = cur
+    cur = next
+  }
+  head.next = cur
+  return pre
+}
+
+
 // @lc code=end
 
